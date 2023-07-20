@@ -12,9 +12,11 @@ export default function Home() {
   const [tasks, setTasks] = useState([]);
 
   const addTask = (newTaskTitle) => {
-    const newTask = { id: nanoid(), title: newTaskTitle, completed: false };
-    const newTasks = [...tasks, newTask];
-    setTasks(newTasks);
+    if(newTaskTitle !== ""){
+      const newTask = { id: nanoid(), title: newTaskTitle, completed: false };
+      const newTasks = [...tasks, newTask];
+      setTasks(newTasks);
+    }
   };
 
   const deleteTask = (taskId) => {
@@ -41,7 +43,7 @@ export default function Home() {
       <div style={{ maxWidth: "400px" }} className="mx-auto">
         {/* Task summary */}
         <p className="text-center text-secondary fst-italic">
-          All (...) Done (...)
+          All ({tasks.length}) Done ({tasks.filter( task => task.completed === true).length})
         </p>
         {/* task input */}
         <TaskInput addTaskFunc={addTask} />
@@ -60,7 +62,7 @@ export default function Home() {
       </div>
 
       {/* //footer section */}
-      <Footer year="2023" fullName="Chayanin Suatap" studentId="12345678" />
+      <Footer year="2023" fullName="Autsada Wiriya" studentId="650612107" />
     </div>
   );
 }
